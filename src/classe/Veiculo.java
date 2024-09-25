@@ -1,4 +1,4 @@
-package src.classe;
+package classe;
 
 public class Veiculo {
 	public int velocidade;
