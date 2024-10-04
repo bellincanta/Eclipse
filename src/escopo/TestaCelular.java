@@ -15,11 +15,11 @@ public class TestaCelular {
 		c3.numero = "45 9990-0003";
 
 		System.out.println("Celular 01: " 
-				+ c1.numero + "Empresa: " + c1.empresa
+				+ c1.numero + "Empresa: " + Celular.empresa
 				+ "\nCelular 02: " 
-				+ c2.numero + "Empresa: " + c2.empresa
+				+ c2.numero + "Empresa: " + Celular.empresa
 				+ "\nCelular 03: " 
-				+ c3.numero + "Empresa: " + c3.empresa
+				+ c3.numero + "Empresa: " + Celular.empresa
 				);
 
 	}
