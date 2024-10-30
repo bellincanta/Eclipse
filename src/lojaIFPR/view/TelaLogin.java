@@ -23,6 +23,7 @@ public class TelaLogin extends JFrame {
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        setLocationRelativeTo(null);
 
         JLabel lblUsername = new JLabel("Username:");
         lblUsername.setBounds(30, 30, 80, 25);
@@ -44,6 +45,7 @@ public class TelaLogin extends JFrame {
         btnLogin.setBounds(100, 120, 100, 25);
         add(btnLogin);
 
+        
         btnLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,7 +54,7 @@ public class TelaLogin extends JFrame {
 
                 try {
 					if (loginController.autenticar(username, password)) {
-					    JOptionPane.showMessageDialog(null, "Login successful");
+					    JOptionPane.showMessageDialog(null, "Login realizado\n com sucesso!");
 					    new TelaPrincipal().setVisible(true); // Abre a tela principal
 					    dispose(); // Fecha a tela de login
 					} else {

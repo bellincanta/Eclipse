@@ -1,7 +1,5 @@
 package lojaIFPR.model;
 
-import java.util.ArrayList;
-
 import lojaIFPR.dao.ClienteDAO;
 import lojaIFPR.dao.ExceptionDAO;
 
@@ -43,4 +41,11 @@ public class Cliente {
 		new ClienteDAO().cadastrarCliente(cliente);
 	}
 
+	public void alterarCliente(Cliente cliente) throws ExceptionDAO{
+		new ClienteDAO().alterarCliente(cliente);
+	}
+	
+	public void excluirCliente(int codCli) throws ExceptionDAO{
+		new ClienteDAO().excluirCliente(codCli);
+	}
 }

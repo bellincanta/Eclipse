@@ -1,9 +1,8 @@
 package lojaIFPR.view;
 
 import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 import javax.swing.*;
 
 
@@ -23,7 +22,12 @@ public class TelaPrincipal extends JFrame {
 		public TelaPrincipal() {
 
 			super("Loja IFPR");
-
+			setSize(800, 600);
+			setLocationRelativeTo(null);
+			setExtendedState(JFrame.NORMAL);
+			
+			setLayout(new BorderLayout());
+			
 			barMenu = new JMenuBar();
 			cadastroMenu = new JMenu("Cadastro");
 			compraMenu = new JMenu("Compra");
@@ -67,16 +71,16 @@ public class TelaPrincipal extends JFrame {
 					System.exit(0);
 				}
 			});
-			/*clienteMenuItem.addActionListener(new ActionListener()
+			clienteMenuItem.addActionListener(new ActionListener()
 			{
 				@Override
 				public void actionPerformed(ActionEvent sair)
 				{
 					TelaCadCli cadClientes = new TelaCadCli();
 				}
-			});*/
+			});
 		}
-	}
+}
 
 	
 	

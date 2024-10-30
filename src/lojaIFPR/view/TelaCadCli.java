@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import lojaIFPR.controller.ClienteController;
+import lojaIFPR.model.Cliente;
+
 public class TelaCadCli extends JFrame {
 
 	private static final long serialVersionUID = 5756598100844974336L;
@@ -39,6 +42,7 @@ public class TelaCadCli extends JFrame {
 		// setTitle("Cadastro de Clientes");
 		setVisible(true);
 		setLayout(null);
+		setLocationRelativeTo(null);
 
 		nomeJLabel.setBounds(10, 10, 100, 25);
 		nomeJTxtField.setBounds(50, 10, 200, 25);
@@ -68,7 +72,84 @@ public class TelaCadCli extends JFrame {
 		excluirBtn.setEnabled(false);
 		//incluirBtn.setEnabled(false);
 		
+		incluirBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ClienteController clienteController = new ClienteController();
+					clienteController.cadastrarCliente(nomeJTxtField.getText(), foneJTxtField.getText());
+					JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso");
+					limparCampos();
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
+				}
 				
+			}
+		});
+		
+		consultarBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ClienteController clienteController = new ClienteController();
+					Cliente cliente = clienteController.consultarCliente(nomeJTxtField.getText());
+					if (cliente != null) {
+						nomeJTxtField.setText(cliente.getNome());
+						foneJTxtField.setText(cliente.getTelefone());
+						alterarBtn.setEnabled(true);
+						excluirBtn.setEnabled(true);
+					}
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
+				}
+				
+			}
+		});
+		
+		alterarBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ClienteController clienteController = new ClienteController();
+					int codCli = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do cliente"));
+					clienteController.alterarCliente(codCli, nomeJTxtField.getText(), foneJTxtField.getText());
+					JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso");
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage());
+				}
+			}
+		});
+		
+		limparBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nomeJTxtField.setText("");
+				foneJTxtField.setText("");
+			}
+		});
+		
+		excluirBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ClienteController clienteController = new ClienteController();
+					int codCli = Integer.parseInt(JOptionPane.showInputDialog("Informe o id do cliente a ser excluído: " ));
+					clienteController.excluirCliente(codCli);
+					JOptionPane.showMessageDialog(null,"Cliente excluído com sucesso!");
+					limparCampos();
+				} catch (Exception ex){
+					JOptionPane.showInputDialog("null", "Erro: " + ex.getMessage());
+				}
+			}
+		});
+		
+		
+	}
+	private void limparCampos() {
+		nomeJTxtField.setText("");
+		foneJTxtField.setText("");
+		alterarBtn.setEnabled(true);
+		excluirBtn.setEnabled(true);
 	}
 }
 
